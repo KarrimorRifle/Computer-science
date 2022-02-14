@@ -24,11 +24,11 @@ public class PlayerCombat : CombatClass
         Physics2D.IgnoreLayerCollision(3,7,immunity);//ignores the layercollisions if the player is immune
         if(immunity)//making the player transparent if theyre immune
         {
-            sprite.color = new Color(1,1,1,0.7f);
+            sprite.color = new Color(1,1,1,0.5f);
         }else{
             sprite.color = new Color(1,1,1,1);
         }
-
+        //death check
         if(dead && (Time.time - deathTime) > animationDeathLength)
         {
             //reset entire level
@@ -36,6 +36,7 @@ public class PlayerCombat : CombatClass
     }
     public void die()//overiding death
     {
+        Debug.Log("Combat: Die() has been called");
         
         //testing if the player has extra lives
         if(extraLives >= 0)
@@ -51,6 +52,41 @@ public class PlayerCombat : CombatClass
             dead = true;
         }
 
+    }
+    public void takeDamage(float damage, Vector2 damageSource, float knockbackForce)
+    {
+        Debug.Log("combat: OW!");
+        if(!immunity)//only applies dmg if player isnt immune
+            if( shield > 0 && shield > damage)//taking damage with shield
+            {
+                shield -= damage;
+            }else if(0 < shield && shield < damage)
+            {
+                float carryDamage = damage - shield;
+                shield = 0;
+                health -= carryDamage;
+            }else{
+                health -= damage;
+            }
+        //damage animation
+        animator.SetTrigger("hurt");//sets trigger for getting hurt in animations
+        // death
+        if( health <= 0)
+        {
+            Debug.Log("Combat: health is below 0");
+            die();
+        }
+        //knockback
+            //calculating x & y travel
+            Vector2 travel = (Vector2)self.transform.position- damageSource;
+            //calculate hypotenuse
+            float h = Mathf.Sqrt(Mathf.Pow(travel.x,2) + Mathf.Pow(travel.y, 2));
+            //calculating force
+            Vector2 force = (Vector2)((travel*knockbackForce)/h);
+            //adding force
+            rb.AddForce(force);
+
+    
     }
     
 }

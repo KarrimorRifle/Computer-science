@@ -6602,6 +6602,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1798561751 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5364509896874203025, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
+  m_PrefabInstance: {fileID: 2459300152226170931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1798561755 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5364509896874203030, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
+  m_PrefabInstance: {fileID: 2459300152226170931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2459300152226170931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6653,6 +6663,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5364509896874203052, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1798561751}
+    - target: {fileID: 5364509896874203052, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 1798561755}
     - target: {fileID: 5364509896874203053, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
       propertyPath: m_Name
       value: Player

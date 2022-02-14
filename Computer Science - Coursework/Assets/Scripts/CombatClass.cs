@@ -72,7 +72,7 @@ public class CombatClass : MonoBehaviour
     public void Attack() //a function to deal damage
     {
         
-        if( (Time.time - lastAttack) >= (1 / attackSpeed))
+        if( (Time.time - lastAttack) > (1 / attackSpeed))
         {
             lastAttack = Time.time;//sets the time of the latest attack
             //attack animation
@@ -81,12 +81,18 @@ public class CombatClass : MonoBehaviour
             //detect enemies in range
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, targetLayers); //uses the previous variables to construct 
             //a sphere around the point and collects all enemies within the circle
-
+            bool playerHit = false;
             //apply dmg
             foreach(Collider2D enemy in hitEnemies) //as can be read, for every enemy in the "hitEnemies" array they will be printed in the debug
             {
                 Debug.Log("Combat: " + enemy.name + " was hit"); //debug function to test
-                enemy.GetComponent<CombatClass>().takeDamage(attackDamage,self.transform.position, attackKnockback);
+                if(enemy.name == "Player" && !playerHit)
+                {
+                    enemy.GetComponent<PlayerCombat>().takeDamage(attackDamage,self.transform.position, attackKnockback);
+                    playerHit = true;
+                }   
+                else
+                    enemy.GetComponent<CombatClass>().takeDamage(attackDamage,self.transform.position, attackKnockback);
             }
         }
     }
