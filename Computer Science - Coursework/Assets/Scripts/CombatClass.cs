@@ -131,7 +131,7 @@ public class CombatClass : MonoBehaviour
                 case "attack_sword":
                 animationAttackLength = clip.length;
                     break;
-                case "player_death":
+                case "vanish":
                     animationDeathLength = clip.length;
                     break;
             }
