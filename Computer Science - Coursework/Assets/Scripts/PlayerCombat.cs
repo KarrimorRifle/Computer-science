@@ -85,8 +85,36 @@ public class PlayerCombat : CombatClass
             Vector2 force = (Vector2)((travel*knockbackForce)/h);
             //adding force
             rb.AddForce(force);
-
-    
     }
-    
+    //guns
+    public Transform shootLocation;
+    public float gunDamage = 3;
+    public float gunKnockback = 100;
+    public float bulletVelocity = 5;
+    public int magCount = 10;
+    public int ammoCount = 15;
+    public int magMax = 10;
+    //reloading
+    public bool reloading = false;
+    public float reloadLength = 2.5f;
+    public float reloadTime;
+    public IEnumerator reload()
+    {
+        if(magCount < magMax)
+        {
+            if(ammoCount >= magMax) //checks if there is enough ammo
+            {
+                reloading = true;
+                yield return new WaitForSeconds(reloadLength);
+                magCount = magMax;
+                ammoCount -= magMax;
+            }else if(ammoCount > 0){//in case there isnt enough ammo
+                reloading = true;
+                yield return new WaitForSeconds(reloadLength);
+                magCount = ammoCount;
+                ammoCount = 0;
+            }
+        }
+   }
 }
+
