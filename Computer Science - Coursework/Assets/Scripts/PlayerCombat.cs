@@ -9,29 +9,31 @@ public class PlayerCombat : CombatClass
     public float immunityLength = 2.5f;
     float immunityTime;
     bool dead;
+    public GunController gun;
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Space)) //detects if spacebar is pressed on
-        {
-            Attack(); //calling the attack function
-        }
-        //removing immunity if time is up
-        if((Time.time - immunityTime) >= immunityLength)
-        {
-            immunity = false; //resseting immunity if time is up
-        }
-        Physics2D.IgnoreLayerCollision(3,7,immunity);//ignores the layercollisions if the player is immune
-        if(immunity)//making the player transparent if theyre immune
-        {
-            sprite.color = new Color(1,1,1,0.5f);
-        }else{
-            sprite.color = new Color(1,1,1,1);
-        }
-        //death check
-        if(dead && (Time.time - deathTime) > animationDeathLength)
-        {
-            //reset entire level
+        if(!gun.turret){
+            if (Input.GetKeyDown(KeyCode.Space)) //detects if spacebar is pressed on
+            {
+                Attack(); //calling the attack function
+            }
+            //removing immunity if time is up
+            if((Time.time - immunityTime) >= immunityLength)
+            {
+                immunity = false; //resseting immunity if time is up
+            }
+            Physics2D.IgnoreLayerCollision(3,7,immunity);//ignores the layercollisions if the player is immune
+            if(immunity)//making the player transparent if theyre immune
+            {
+                sprite.color = new Color(1,1,1,0.5f);
+            }else{
+                sprite.color = new Color(1,1,1,1);
+            }
+            //death check
+            if(dead && (Time.time - deathTime) > animationDeathLength)
+            {
+                //reset entire level
+            }
         }
     }
     public void die()//overiding death
@@ -86,35 +88,7 @@ public class PlayerCombat : CombatClass
             //adding force
             rb.AddForce(force);
     }
-    //guns
-    public Transform shootLocation;
-    public float gunDamage = 3;
-    public float gunKnockback = 100;
-    public float bulletVelocity = 5;
-    public int magCount = 10;
-    public int ammoCount = 15;
-    public int magMax = 10;
-    //reloading
-    public bool reloading = false;
-    public float reloadLength = 2.5f;
-    public float reloadTime;
-    public IEnumerator reload()
-    {
-        if(magCount < magMax)
-        {
-            if(ammoCount >= magMax) //checks if there is enough ammo
-            {
-                reloading = true;
-                yield return new WaitForSeconds(reloadLength);
-                magCount = magMax;
-                ammoCount -= magMax;
-            }else if(ammoCount > 0){//in case there isnt enough ammo
-                reloading = true;
-                yield return new WaitForSeconds(reloadLength);
-                magCount = ammoCount;
-                ammoCount = 0;
-            }
-        }
-   }
+
+
 }
 

@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    public Animator anim;
     public Camera cam;
     public Transform shootLocation;
     public Transform gun;
     public float gunDamage = 3;
     public float gunKnockback = 100;
     public float bulletVelocity = 5;
-    public int magCount = 10;
+    int magCount;
     public int ammoCount = 15;
     public int magMax = 10;
     //reloading
     public bool reloading = false;
+    public bool turret = false;
     public float reloadLength = 2.5f;
     float reloadTime;
     Vector2 mousePos;
+    void Start()
+    {
+        magCount = magMax;
+    }
     void FixedUpdate()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition); //finds the screen location of the mouse
@@ -28,7 +34,15 @@ public class GunController : MonoBehaviour
         else
             transform.rotation = Quaternion.Euler(0, 0,angle); //arm is rotated for right side
     }
+    void Update()
+    {
 
+        if(Input.GetMouseButton(1))
+            turret = true;
+        else
+            turret = false;
+        anim.SetBool("showing",turret);
+    }
     public IEnumerator reload()
     {
         if(magCount < magMax)
