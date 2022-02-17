@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4523987188455541140}
   - component: {fileID: 5605620602246005866}
   - component: {fileID: 1998135519539491937}
-  m_Layer: 0
+  - component: {fileID: 8530095359393032386}
+  m_Layer: 8
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1884581714723717516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,3 +134,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26955056, y: 0.57103264}
   m_EdgeRadius: 0
+--- !u!114 &8530095359393032386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884581714723717516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d408f42e5f6754f968c8d2b31882d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bDamage: 0
+  bKnockBack: 0
+  hitExplosion: {fileID: 6534008228106538533, guid: 33c86e87c0842fd4cbb272e3b79c5078, type: 3}
