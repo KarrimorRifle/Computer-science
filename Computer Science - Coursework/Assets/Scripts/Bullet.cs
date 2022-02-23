@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         if(collision.gameObject.layer == 7)
             collision.gameObject.GetComponent<CombatClass>().takeDamage(bDamage,transform.position,bKnockBack);//calling the enemy's function
         GameObject explosion = Instantiate(hitExplosion, transform.position - new Vector3(0f,0.3f,0f), Quaternion.identity);
-        Destroy(explosion,1/6);//destroy explosion after 2.5 seconds
+        Destroy(explosion,0.17f);//destroy explosion after 2.5 seconds
         Destroy(gameObject);//destroy itself
     }
 }

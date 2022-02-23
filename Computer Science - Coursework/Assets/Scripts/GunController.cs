@@ -22,10 +22,12 @@ public class GunController : MonoBehaviour
     //shooting
     public float bps = 3f; //bullets per second
     public float lastFired = 0;
+    public bool smg;
     void Start()
     {
         magCount = magMax;
         Physics2D.IgnoreLayerCollision(3,8,true);
+        Physics2D.IgnoreLayerCollision(8,8,true);
     }
     void FixedUpdate()
     {
@@ -58,9 +60,12 @@ public class GunController : MonoBehaviour
     public GameObject bulletPrefab;
     void shoot()
     {
-        if((magCount > 0) && (1/bps < (Time.time - lastFired)))
+        float fireRate = 1 / bps;
+        Debug.Log("Combat : FireRate; " + fireRate);
+        if(((magCount > 0) && (fireRate < (Time.time - lastFired))) || smg)
         {
-            magCount --;
+            if(!smg)//checks if the power up is active, if not then the mag is used
+                magCount --;
             lastFired = Time.time;
             GameObject bullet = Instantiate(bulletPrefab,shootLocation.position,shootLocation.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>(); //referencing the rigidbody

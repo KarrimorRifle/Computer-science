@@ -21,11 +21,15 @@ public class PlayerMovement : MonoBehaviour
 
 //animations
     public Animator Anim; //references the animator component
-
+    bool speedreset;
     //updates every frame
     void Update(){
+        
         if(!gun.turret)
         {
+            if(!speedreset)
+                Speed = NormalSpeed;
+                speedreset = true;
             Anim.SetBool("turret",false);
             if(Input.GetButtonDown("Jump")){
                 jump = true;
@@ -44,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if(Input.GetButtonDown("Sprint") && !controller.m_wasCrouching)
             {
+                Debug.Log("movement: test");
                 Speed = SprintSpeed;
                 running = true;
                 Anim.SetBool("running",true);
@@ -59,12 +64,13 @@ public class PlayerMovement : MonoBehaviour
             }else if(controller.m_Grounded && Air){ //testing if it was in the air before before setting the onGround trigger
                 Air = false;
                 Anim.SetTrigger("onGround");
-            }else
-                Speed = NormalSpeed;
+            }
         }else
         {
             Speed = 0;
             Anim.SetBool("turret",true);
+            crouch = false;
+            speedreset = false;
         }
     }
     void FixedUpdate(){
