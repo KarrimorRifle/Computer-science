@@ -12,13 +12,5 @@ public class EnemyCombat : CombatClass
         {
             Attack();
         }
-        
-        
-        if((deathTime != 0) && (Time.time - deathTime) >= animationDeathLength)
-        {
-            sprite.enabled = false;
-            Destroy(self);
-            this.enabled = false;
-        }
     }
 }

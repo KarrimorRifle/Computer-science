@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CombatClass : MonoBehaviour
 {
-    
-    public GameObject self;
+
     public Animator animator;
 
     public float shield;
@@ -23,11 +22,11 @@ public class CombatClass : MonoBehaviour
     //death / things to disable upon death
         public SpriteRenderer sprite;
         float lastAttack = 0;
-        public float deathTime = 0;
     //animation clip times
     private AnimationClip clip;
     public float animationAttackLength; //contains the amount of time to run the attack length
     public float animationDeathLength; //contains the amount of time to run the death animation
+    public float deathTime;
 
     
     void Start()
@@ -59,7 +58,7 @@ public class CombatClass : MonoBehaviour
         }
         //knockback
             //calculating x & y travel
-            Vector2 travel = (Vector2)self.transform.position- damageSource;
+            Vector2 travel = (Vector2)transform.position- damageSource;
             //calculate hypotenuse
             float h = Mathf.Sqrt(Mathf.Pow(travel.x,2) + Mathf.Pow(travel.y, 2));
             //calculating force
@@ -88,22 +87,35 @@ public class CombatClass : MonoBehaviour
                 Debug.Log("Combat: " + enemy.name + " was hit"); //debug function to test
                 if(enemy.name == "Player" && !playerHit)
                 {
-                    enemy.GetComponent<PlayerCombat>().takeDamage(attackDamage,self.transform.position, attackKnockback);
+                    enemy.GetComponent<PlayerCombat>().takeDamage(attackDamage,transform.position, attackKnockback);
                     playerHit = true;
                 }   
                 else
-                    enemy.GetComponent<CombatClass>().takeDamage(attackDamage,self.transform.position, attackKnockback);
+                    enemy.GetComponent<CombatClass>().takeDamage(attackDamage,transform.position, attackKnockback);
             }
         }
     }
+    public GameObject power;
     public void die()
     {
+        //drops loot
+        int drop = Random.Range(1,101);//gets a random number 1-100
+        GameObject Drop = Instantiate(power,transform.position,Quaternion.identity);//instantiates power up at its location
+        //setting the power up
+        if(drop >= 1 && drop <= 50){
+            Drop.GetComponentInChildren<PowerUp>().powerUp = "ammo";
+            Drop.GetComponentInChildren<PowerUp>().ammo = 10;}
+        else if(drop >= 51 && drop <= 55)
+            Drop.GetComponentInChildren<PowerUp>().powerUp = "ghost";
+        else if(drop >= 56 && drop <= 60)
+            Drop.GetComponentInChildren<PowerUp>().powerUp = "smg";
+        else if(drop >= 61 && drop <= 70)
+            Drop.GetComponentInChildren<PowerUp>().powerUp = "invincible";
         //death aimation
         animator.SetBool("dead",true);//triggers death animation
-
+        Destroy(gameObject,animationDeathLength);
         //disable character
         //the character is visually disabled and this script will stop running so no damage can be done to the player
-        deathTime = Time.time;
         GetComponent<Collider2D>().enabled = false; //disables collider
         //this.enabled = false;// disables the combat script
 

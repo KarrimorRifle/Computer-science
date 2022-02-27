@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807897793}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8500001, y: 0, z: 0}
+  m_LocalPosition: {x: -0.92, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -138,12 +138,16 @@ MonoBehaviour:
   gun: {fileID: 1060946913}
   gunDamage: 3
   gunKnockback: 100
-  bulletVelocity: 5
+  bulletVelocity: 15
   ammoCount: 15
   magMax: 10
   reloading: 0
   turret: 0
   reloadLength: 2.5
+  bps: 3
+  lastFired: 0
+  smg: 0
+  bulletPrefab: {fileID: 1884581714723717516, guid: 5d9962d434ca0124b9e4d5bbbfbdc2e0, type: 3}
 --- !u!95 &1060946916
 Animator:
   serializedVersion: 4
@@ -643,7 +647,7 @@ GameObject:
   - component: {fileID: 5364509896874203052}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -866,7 +870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4e3947853bf5047b0cbff0fc01955a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 5364509896874203053}
   animator: {fileID: 2459300150754137933}
   shield: 0
   maxHealth: 50
@@ -881,9 +884,19 @@ MonoBehaviour:
   attackPoint: {fileID: 2459300151092355064}
   attackRange: 0.5
   sprite: {fileID: 5364509896874203030}
-  deathTime: 0
   animationAttackLength: 0
   animationDeathLength: 0
+  deathTime: 0
+  power: {fileID: 0}
   extraLives: 3
   immunityLength: 2.5
   gun: {fileID: 1060946915}
+  pow: ghost
+  powStartTime: 0
+  powLength: 0
+  smgDuration: 3
+  smgMultiplier: 1.5
+  movement: {fileID: 5364509896874203026}
+  ghostMultiplier: 2.5
+  ghostDuration: 3
+  invDuration: 5

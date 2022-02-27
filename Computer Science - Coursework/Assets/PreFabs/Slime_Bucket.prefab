@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce32d4b7481256047accd9285dee1d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 3048566101308984347}
   animator: {fileID: 3048566102550956135}
   shield: 0
   maxHealth: 10
@@ -173,15 +172,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   attackSpeed: 0.5
-  attackKnockback: 500
+  attackKnockback: 100
   attackDamage: 1
   attackPoint: {fileID: 3048566101087304608}
   attackRange: 0.4
   sprite: {fileID: 3048566102676948989}
-  deathTime: 0
   animationAttackLength: 0
   animationDeathLength: 0
-  target: {fileID: 0}
+  deathTime: 0
+  power: {fileID: 7720354166255213249, guid: 442e4a4692b4a6047adcfa85cfd0629c, type: 3}
+  target: {fileID: 2459300151691006474, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
 --- !u!1 &3048566102676948736
 GameObject:
   m_ObjectHideFlags: 0

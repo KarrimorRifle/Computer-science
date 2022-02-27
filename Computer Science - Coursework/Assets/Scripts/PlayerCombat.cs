@@ -63,7 +63,9 @@ public class PlayerCombat : CombatClass
     public void takeDamage(float damage, Vector2 damageSource, float knockbackForce)
     {
         Debug.Log("combat: OW!");
-        if(!immunity)//only applies dmg if player isnt immune
+        if(!immunity || !invincible)//only applies dmg if player isnt immune
+        {
+            animator.SetTrigger("hurt");//sets trigger for getting hurt in animations
             if( shield > 0 && shield > damage)//taking damage with shield
             {
                 shield -= damage;
@@ -75,8 +77,9 @@ public class PlayerCombat : CombatClass
             }else{
                 health -= damage;
             }
+        }
         //damage animation
-        animator.SetTrigger("hurt");//sets trigger for getting hurt in animations
+        
         // death
         if( health <= 0)
         {
@@ -85,7 +88,7 @@ public class PlayerCombat : CombatClass
         }
         //knockback
             //calculating x & y travel
-            Vector2 travel = (Vector2)self.transform.position- damageSource;
+            Vector2 travel = (Vector2)transform.position- damageSource;
             //calculate hypotenuse
             float h = Mathf.Sqrt(Mathf.Pow(travel.x,2) + Mathf.Pow(travel.y, 2));
             //calculating force
@@ -157,13 +160,15 @@ public class PlayerCombat : CombatClass
         movement.SprintSpeed = ssp;
         Physics2D.IgnoreLayerCollision(3,7,false);
     }
+
     public float invDuration = 5f;//invincibility duration
+    bool invincible = false;
     IEnumerator powInvincible()
     {
-        immunity = true;//making the player immune
+        invincible = true;//making the player immune
         sprite.color = new Color(.6f,1,.6f,0.5f); //makes player green
         yield return new WaitForSeconds(invDuration);//waits
-        immunity = false; //resets immunity
+        invincible = false; //resets immunity
         sprite.color = new Color(1,1,1,1); //changes colour back
     }
 
