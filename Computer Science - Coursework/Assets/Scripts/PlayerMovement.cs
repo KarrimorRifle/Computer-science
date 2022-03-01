@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float NormalSpeed = 20f;
     public float SprintSpeed = 40f;
     public float Speed = 20f;
-    float Stamina = 100f;
+    public float Stamina = 100f;
     float MaxStamina = 100f;
     bool running = false;
     bool jump = false;
@@ -46,14 +46,14 @@ public class PlayerMovement : MonoBehaviour
                 //Anim.SetBool("crouching",false);
                 crouch = false;
             }
-            if(Input.GetButtonDown("Sprint") && !controller.m_wasCrouching)
+            if(Input.GetButtonDown("Sprint") && !controller.m_wasCrouching && Stamina >= 10)
             {
                 Debug.Log("movement: test");
                 Speed = SprintSpeed;
                 running = true;
                 Anim.SetBool("running",true);
             }
-            else if(Input.GetButtonUp("Sprint")){
+            else if(Input.GetButtonUp("Sprint") || Stamina <= 0){
                 Speed = NormalSpeed;
                 running = false;
                 Anim.SetBool("running",false);
@@ -73,7 +73,13 @@ public class PlayerMovement : MonoBehaviour
             speedreset = false;
         }
     }
+    public float staminaConsumption = 10;
+    public float staminaRecovery = 15f;
     void FixedUpdate(){
+        if(running)
+            Stamina -= staminaConsumption *Time.deltaTime;
+        else if(!running && Stamina <= MaxStamina)
+            Stamina += staminaRecovery * Time.deltaTime;
         if(!gun.turret){
             horizontalMove = Input.GetAxisRaw("Horizontal") * Speed;//sets the amount the player should move 
             if (horizontalMove != 0){

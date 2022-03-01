@@ -6401,16 +6401,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5364509896874203052, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
-      propertyPath: pow
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5364509896874203053, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5364509896874203053, guid: e26359f344f7b164aa3321d05aac3e3a, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6646,6 +6638,10 @@ PrefabInstance:
     - target: {fileID: 3048566101308984347, guid: 537005a278cc3db41a0fe9881a634bd3, type: 3}
       propertyPath: m_Name
       value: Slime_Bucket
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048566101308984347, guid: 537005a278cc3db41a0fe9881a634bd3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4791993098898973896, guid: 537005a278cc3db41a0fe9881a634bd3, type: 3}
       propertyPath: target
