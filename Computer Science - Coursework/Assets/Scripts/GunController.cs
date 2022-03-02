@@ -11,7 +11,7 @@ public class GunController : MonoBehaviour
     public float gunDamage = 3;
     public float gunKnockback = 100;
     public float bulletVelocity = 5;
-    int magCount;
+    public int magCount;
     public int ammoCount = 15;
     public int magMax = 10;
     //reloading
@@ -77,19 +77,21 @@ public class GunController : MonoBehaviour
         }else if(magCount == 0)
             Debug.Log("Combat: No ammo");
     }
+    public float reloadStartTime;
     public IEnumerator reload()
     {
         //Debug.Log("Combat : reloading 0");
         if(magCount < magMax)
         {
+            reloadStartTime = Time.time;
             //Debug.Log("Combat : reloading 1");
             if(ammoCount >= magMax) //checks if there is enough ammo
             {
                 //Debug.Log("Combat : reloading 2");
                 reloading = true;
                 yield return new WaitForSeconds(reloadLength);
+                ammoCount -= magMax - magCount;
                 magCount = magMax;
-                ammoCount -= magMax;
                 reloading = false;
             }else if(ammoCount > 0){//in case there isnt enough ammo
                 //Debug.Log("Combat : reloading 3");

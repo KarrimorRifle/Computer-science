@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float SprintSpeed = 40f;
     public float Speed = 20f;
     public float Stamina = 100f;
-    float MaxStamina = 100f;
+    public float MaxStamina = 100f;
     bool running = false;
     bool jump = false;
     bool crouch = false;
