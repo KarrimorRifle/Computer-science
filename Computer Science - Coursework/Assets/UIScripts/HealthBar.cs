@@ -10,11 +10,11 @@ public class HealthBar : MonoBehaviour
     void Start()
     {  
         slide = gameObject.GetComponent<Slider>();
-        slide.maxValue = Player.GetComponent<PlayerCombat>().maxHealth;
+        slide.maxValue = Player.GetComponent<CombatClass>().maxHealth;
         
     }
     void Update()
     {
-        slide.value = Player.GetComponent<PlayerCombat>().health;
+        slide.value = Player.GetComponent<CombatClass>().health;
     }
 }

@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,10 @@ public class PlayerCombat : CombatClass
     float immunityTime;
     bool dead;
     public GunController gun;
+    void Awake()
+    {
+        FindObjectOfType<GameSaveManager>().LoadPlayerState(this.gameObject);
+    }
     void Update()
     {
         if(!gun.turret){
@@ -56,6 +60,7 @@ public class PlayerCombat : CombatClass
         }else{
             animator.SetBool("dead",true);//triggers death animation
             deathTime = Time.time;
+            Destroy(gameObject,animationDeathLength);
             dead = true;
         }
 

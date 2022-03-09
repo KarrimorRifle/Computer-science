@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
         
         InvokeRepeating("UpdatePath", 0f, .5f); //invokeRepeating causes a methof to repeat in the specified variables
         //variables for invoke : ( methos to be called, delay before it's called, time to repeat)
-        
+        target = GameObject.Find("Player").transform.Find("PlayerFollow");
     }
     void UpdatePath()
     {

@@ -62,7 +62,7 @@ public class GunController : MonoBehaviour
     {
         float fireRate = 1 / bps;
         Debug.Log("Combat : FireRate; " + fireRate);
-        if(((magCount > 0) && (fireRate < (Time.time - lastFired))) || smg)
+        if(((magCount > 0) && (fireRate < (Time.time - lastFired)) && !reloading) || smg)
         {
             if(!smg)//checks if the power up is active, if not then the mag is used
                 magCount --;

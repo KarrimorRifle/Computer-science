@@ -24,7 +24,7 @@ public class PowerUp : MonoBehaviour
         {//makes sure the power up doesnt overide the current one
             collision.GetComponent<PlayerCombat>().pow = powerUp;//changes the player's power up
             Destroy(transform.parent.gameObject);//destroys parent
-        }else if(powerUp == "ammo")
+        }else if(collision.name == "Player" && powerUp == "ammo")
         {
             collision.GetComponentInChildren<GunController>().ammoCount += ammo;
             Destroy(transform.parent.gameObject);
