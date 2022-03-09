@@ -12,7 +12,14 @@ public class PlayerCombat : CombatClass
     public GunController gun;
     void Awake()
     {
+        if(FindObjectOfType<GameSaveManager>() == null) return;
         FindObjectOfType<GameSaveManager>().LoadPlayerState(this.gameObject);
+    }
+    void Start()
+    {
+        health = maxHealth;
+        updateAnimClipTimes();
+        animator.SetFloat("attackSpeed",animationAttackLength * 5);
     }
     void Update()
     {
