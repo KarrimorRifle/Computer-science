@@ -23,7 +23,7 @@ public class GameSaveManager : MonoBehaviour
     }
     
     void Update()
-    {
+    {//sets the level limit
         levelManager = FindObjectOfType<LevelManager>();
         if( levelManager != null)
             if(levelManager.levelLimit < levelLimit)
@@ -31,20 +31,25 @@ public class GameSaveManager : MonoBehaviour
     }
     bool saved = false; //sees if there has already been data saved
     public void SavePlayerState()
-    {
+    {//called to save the player's variables
+    //finds the player and gun objects
         player = FindObjectOfType<PlayerCombat>();
         gun = FindObjectOfType<GunController>();
+        //stores variables within itself
         ammoCount = gun.ammoCount;
         magCount = gun.magCount;
         extraLives = player.extraLives;
         pow = player.pow;
+        //boolean is used to know if data was stored
         saved = true;
+        //if this doesnt happen all variables
+        //in player wouldve been set to null or 0
 
     }
     public void LoadPlayerState(GameObject playerLoad)
     {
         if(saved)
-        {
+        {//if there has been data saved if so data is reloaded into the player
             PlayerCombat player = playerLoad.GetComponent<PlayerCombat>();
             GunController gun = playerLoad.GetComponentInChildren<GunController>();
             gun.ammoCount = ammoCount;

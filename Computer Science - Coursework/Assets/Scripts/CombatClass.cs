@@ -85,12 +85,12 @@ public class CombatClass : MonoBehaviour
             foreach(Collider2D enemy in hitEnemies) //as can be read, for every enemy in the "hitEnemies" array they will be printed in the debug
             {
                 Debug.Log("Combat: " + enemy.name + " was hit"); //debug function to test
-                if(enemy.name == "Player" && !playerHit)
+                if(enemy.GetComponent<PlayerCombat>() != null && !playerHit)
                 {
                     enemy.GetComponent<PlayerCombat>().takeDamage(attackDamage,transform.position, attackKnockback);
                     playerHit = true;
                 }   
-                else
+                else if(enemy.GetComponent<PlayerCombat>() == null)
                     enemy.GetComponent<CombatClass>().takeDamage(attackDamage,transform.position, attackKnockback);
             }
         }
@@ -117,6 +117,7 @@ public class CombatClass : MonoBehaviour
         //disable character
         //the character is visually disabled and this script will stop running so no damage can be done to the player
         GetComponent<Collider2D>().enabled = false; //disables collider
+        Destroy(this);
         //this.enabled = false;// disables the combat script
 
     }

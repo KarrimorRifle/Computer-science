@@ -74,8 +74,8 @@ public class PlayerCombat : CombatClass
     }
     public void takeDamage(float damage, Vector2 damageSource, float knockbackForce)
     {
-        Debug.Log("combat: OW!");
-        if(!immunity || !invincible)//only applies dmg if player isnt immune
+        Debug.Log("combat: Invincible: " + invincible);
+        if(!immunity && !(invincible))//only applies dmg if player isnt immune
         {
             animator.SetTrigger("hurt");//sets trigger for getting hurt in animations
             if( shield > 0 && shield > damage)//taking damage with shield

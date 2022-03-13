@@ -38,6 +38,7 @@ public class pauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        FindObjectOfType<ScenesManager>().LoadMenu();
         //loads menu scene which hasnt been created.
     }
     public void QuitGame()
