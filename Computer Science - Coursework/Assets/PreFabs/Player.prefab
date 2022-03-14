@@ -139,6 +139,7 @@ MonoBehaviour:
   gunDamage: 3
   gunKnockback: 100
   bulletVelocity: 15
+  magCount: 0
   ammoCount: 15
   magMax: 10
   reloading: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   lastFired: 0
   smg: 0
   bulletPrefab: {fileID: 1884581714723717516, guid: 5d9962d434ca0124b9e4d5bbbfbdc2e0, type: 3}
+  reloadStartTime: 0
 --- !u!95 &1060946916
 Animator:
   serializedVersion: 4
@@ -790,7 +792,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 64
   m_GroundCheck: {fileID: 2459300151912695853}
   m_CeilingCheck: {fileID: 2459300151801398213}
   m_CrouchDisableCollider: {fileID: 5364509896874203031}
@@ -841,7 +843,11 @@ MonoBehaviour:
   NormalSpeed: 30
   SprintSpeed: 45
   Speed: 30
+  Stamina: 100
+  MaxStamina: 100
   Anim: {fileID: 2459300150754137933}
+  staminaConsumption: 10
+  staminaRecovery: 15
 --- !u!58 &5364509896874203027
 CircleCollider2D:
   m_ObjectHideFlags: 0
