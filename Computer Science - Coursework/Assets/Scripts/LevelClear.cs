@@ -17,8 +17,8 @@ public class LevelClear : MonoBehaviour
         if(collision.name == "Player")
         {
             if(save.levelLimit < levelUnlocked)
-                save.levelLimit = levelUnlocked;
-            scene.LoadMenu();
+                save.levelLimit = levelUnlocked;//sets new level
+            scene.LoadMenu();//loads menu
         }
     }
 }
